@@ -1,0 +1,7 @@
+#include<stdio.h>
+int main(void)
+{
+    printf("7\n nuker3");
+    
+    return 0;
+}
