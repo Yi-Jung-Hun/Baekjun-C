@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main(void)
+{
+    int Number;
+    int Result;
+    int A,B,C,D;
+    int count = 0;
+    
+    scanf("%d",&Number);
+    Result=Number;
+    
+    while(1){
+        A = Number / 10;
+		B = Number % 10;
+		C = (A+B) % 10;
+		D = (B*10) + C;
+		Number = D;
+		count++;
+		if(D==Result) break;
+    }
+    printf("%d",count);
+    return 0;
+}
