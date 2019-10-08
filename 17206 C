@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main(void) 
+{
+	int t;
+	scanf("%d",&t);
+	int d[80001] = { 0, };
+	for (int i = 1; i <= 80000; i++) 
+    {
+		if (i % 3 == 0 || i % 7 == 0) 
+        {
+			d[i] = d[i - 1] + i;
+		}
+		else 
+        {
+            d[i] = d[i - 1];
+        }
+	}
+	while (t--)
+    {
+		int n;
+		scanf("%d",&n);
+		printf("%d\n",d[n]);
+	}
+    return 0;
+}
