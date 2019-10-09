@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main(void) {
+	int N,i=0,cnt=0;
+	char buf[100];
+	scanf("%d", &N);
+
+	while (1) {
+		sprintf(buf, "%d", i);
+		if (strstr(buf,"666") != NULL) cnt++;
+		if (cnt == N) {
+			printf("%d", i);
+			break;
+		}
+		i++;
+	} return 0;
+} 
