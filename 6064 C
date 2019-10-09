@@ -1,0 +1,40 @@
+#include <stdio.h>
+#define MOD(a,b) ((a%b ==0) ? b:a%b)
+int main(void)
+{
+	int N,M,x,y;
+	int i,j,k,z,T,count;
+	int gcd = 0;
+	int lcm=0;
+
+	scanf("%d",&T);
+	while(T--)
+	{
+		count = 1; i=1; j=1, z=1;
+		
+		scanf("%d %d %d %d",&M, &N, &x,&y);
+
+		for(k=1; k<=M; k++)
+		{
+			if(M%k == 0 && N%k == 0) gcd = k;
+		}
+
+		lcm = M*N/gcd;
+
+
+		while(1)
+		{
+			if(i == x) z = M;
+			else if( j == y ) z = N;
+
+			if(i >= M) i=MOD(i,M);
+			if(j >= N)  j=MOD(j,N);
+			if(i == x && j==y)  {printf("%d \n", count); break;}
+			else if (count>lcm) {printf("-1\n"); break;}
+
+			i += z; j += z; count += z;
+
+		}
+	}
+	return 0;
+}
