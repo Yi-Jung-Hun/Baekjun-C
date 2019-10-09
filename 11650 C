@@ -1,0 +1,144 @@
+#include <stdio.h>
+typedef struct xy
+{
+    int x;
+    int y;
+}Map;
+ 
+Map map[100001];
+ 
+void SwapX(int a, int b)
+{
+    Map temp = map[a];
+    map[a] = map[b];
+    map[b] = temp;
+}
+ 
+int PartitionX(int left, int right)
+{
+    Map pivot = map[left]; 
+    int low = left + 1;
+    int high = right;
+ 
+ 
+    while (low <= high)
+    {
+        while (pivot.x >= map[low].x && low <= right)  
+        {
+            low++; 
+        }
+ 
+        while (pivot.x <= map[high].x && high >= (left + 1))   
+        {
+            high--; 
+        }
+ 
+        if (low <= high)
+        {
+            SwapX(low, high);  
+        }
+ 
+    }
+    SwapX(left, high); 
+    return high;  
+ 
+}
+ 
+void QuickSortX(int left, int right)
+{
+    if (left <= right)
+    {
+        int pivot = PartitionX(left, right); 
+        QuickSortX(left, pivot - 1); 
+        QuickSortX(pivot + 1, right); 
+    }
+}
+ 
+void SwapY(int a, int b) 
+{
+    Map temp = map[a];
+    map[a] = map[b];
+    map[b] = temp;
+}
+ 
+int PartitionY(int left, int right)
+{
+    Map pivot = map[left];
+    int low = left + 1;
+    int high = right;
+ 
+ 
+    while (low <= high) 
+    {
+        while (pivot.y >= map[low].y && low <= right) 
+        {
+            low++;  
+        }
+ 
+        while (pivot.y <= map[high].y && high >= (left + 1)) 
+        {
+            high--; 
+        }
+ 
+        if (low <= high)
+        {
+            SwapY(low, high); 
+        }
+ 
+    }
+    SwapY(left, high);  
+    return high;  
+ 
+}
+ 
+ 
+void QuickSortY(int left, int right)
+{
+    if (left <= right)
+    {
+        int pivot = PartitionY(left, right); 
+        QuickSortY(left, pivot - 1); 
+        QuickSortY(pivot + 1, right); 
+    }
+}
+ 
+int main(void)
+{
+    int n, i;
+    int start, end;
+    int cnt = 0;
+    scanf("%d", &n);
+ 
+    for (i = 0; i < n; i++)
+        scanf("%d %d", &map[i].x, &map[i].y);
+ 
+    QuickSortX(0, n - 1);
+ 
+    i = 1;
+    start = 0;
+    end = n - 1;
+    while (i < n)
+    {
+        if (map[i].x == map[i - 1].x)
+        {
+            cnt = 1;
+            start = i - 1;
+            while (map[i].x == map[i - 1].x)
+            {
+                end = i;
+                i++;
+            }
+        }
+        if (cnt >= 1)
+        {
+            QuickSortY(start, end);
+            start = i;
+        }
+        cnt = 0;
+        i++;
+    }
+    for (i = 0; i < n; i++){
+        printf("%d %d\n", map[i].x, map[i].y);
+    }
+    return 0;
+}
