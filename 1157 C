@@ -1,0 +1,47 @@
+#include <stdio.h>
+ 
+int main(void) 
+{
+	int ar[27]={0,};
+	char alpha;
+	int i;
+	int multi; 
+	int max; 
+	for(i=0;;i++)
+    {
+		alpha='0';
+		scanf("%c",&alpha);
+		if(alpha=='0'){
+			break;
+		}
+		if(alpha>='a'&&alpha<='z'){
+            ar[alpha-'a']++; 
+            continue;
+        }
+        if(alpha>='A'&&alpha<='Z'){
+            ar[alpha-'A']++; 
+            continue;
+        }
+
+	}
+	max=0; 
+	for(i=1;i<26;i++)
+    {
+		if(ar[max]<ar[i]){
+			max=i;
+			multi=0;
+			continue;
+		}
+		if(ar[max]==ar[i]){
+			multi=1;
+		}
+	}
+	if(multi==1)
+    {
+		printf("?");
+	}else
+    {
+		printf("%c",max+'A');
+	}
+    return 0;
+}
