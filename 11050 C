@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int fac(int n);
+
+int main(void){
+    int N, K;
+    int result;
+    scanf("%d %d", &N, &K);
+    result = fac(N)/fac(K)/fac(N-K);
+    printf("%d", result);
+}
+
+int fac(int n){
+    if(n==0) return 1;
+    int mul = 1; 
+    while(n>1){
+        mul *= n;
+        n--;
+    }
+    return mul;
+}
