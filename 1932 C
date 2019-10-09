@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int dp[501][501], N, arr[501][501];
+
+int MAX(int a, int b) {
+
+	return a > b ? a : b;
+
+}
+
+int f(int h, int n) {//높이가 h인 구간에서 n과 n+1을 비교해서 더 큰 값을 dp후보로.
+
+	return dp[h - 1][n] + MAX(arr[h][n], arr[h][n + 1]);
+
+}
+
+int main(void) 
+{
+	scanf("%d", &N);
+
+	for (int i = 1; i <= N; ++i) {
+
+		for (int j = 1; j <= i; ++j) {
+
+			scanf("%d", &arr[i][j]);
+
+		}
+
+	}
+
+	dp[1][1] = arr[1][1];
+
+	for (int i = 2; i <= N; ++i) {
+
+		for (int j = 1; j <= i; ++j) {
+
+			dp[i][j] = MAX(dp[i - 1][j], dp[i - 1][j - 1]) + arr[i][j];
+
+		}
+
+	}
+
+	int max = -1;
+
+	for (int i = 1; i <= N; ++i) {
+
+		if (dp[N][i] > max) max = dp[N][i];
+
+	}
+
+	printf("%d", max);
+    return 0;
+}
