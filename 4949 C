@@ -1,0 +1,23 @@
+#include <stdio.h>
+int i,top,n,chk[101];
+char str[101];
+void push(){top++; chk[top]=str[i];}
+int pop(){if((str[i]==')' && chk[top]=='(') || (str[i]==']' && chk[top]=='[')) {top--; return 1;}else return 0;}
+int main()
+{
+    while(1) {
+        gets(str);
+        top=-1;
+        n=1;
+        if(str[0]=='.') break;
+        for(i=0;str[i]!='.'; i++) {
+            if(!n) continue;
+            if(str[i]=='(') push();
+            if(str[i]=='[') push();
+            if(str[i]==']') n=pop();
+            if(str[i]==')') n=pop();
+        }
+        if(top==-1 && n) puts("yes");
+        else puts("no");
+    }
+}
