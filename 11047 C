@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void min_coin()
+{
+    int i, j;
+    int N, M;
+    int *arr;
+    int cnt = 0;
+    scanf("%d %d", &N, &M);
+    arr = (int*)malloc(sizeof(int)*N);
+    for (i = 0; i < N; i++)
+        scanf("%d", &arr[i]);
+ 
+    for (i = 0; i < N; i++)
+    {
+        cnt += M / arr[N - i - 1];
+        M %= arr[N - i - 1];
+    }
+    printf("%d", cnt);
+    free(arr);
+    
+}
+int main(void)
+{
+    min_coin();
+    return 0;
+}
