@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+    int n;
+    int i, j;
+    scanf("%d%*c", &n);
+    int num = 0;
+    int GW = 1;
+    
+    for(i = 0; i < n; i++)
+    {
+        GW = 1; 
+        int alpha[27] = { 0, }; 
+        char str[101] = { 0, }; 
+        
+        gets(str);
+        for(j = 0; j <= strlen(str); j++)
+        {
+            if(alpha[str[j]-'a'] == 1){
+                GW = 0;
+                break;
+            }
+            if(str[j] != str[j+1]){
+                alpha[str[j]-'a'] = 1;
+            }
+            
+        }
+        if(GW == 1){
+            num++;
+        }
+    }
+    printf("%d", num);
+    
+    return 0;
+}
